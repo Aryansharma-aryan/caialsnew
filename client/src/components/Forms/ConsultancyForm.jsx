@@ -67,7 +67,7 @@ const ConsultancyForm = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/consult',
+        'https://caialsnew-1.onrender.com/api/consult',
         formData,
         {
           headers: { 'Content-Type': 'application/json' },
