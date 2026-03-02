@@ -2,31 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://caials.in/</loc>
+    <loc>https://www.caials.in/</loc>
   </url>
 
   <url>
-    <loc>https://caials.in/about</loc>
+    <loc>https://www.caials.in/about</loc>
   </url>
 
   <url>
-    <loc>https://caials.in/services</loc>
+    <loc>https://www.caials.in/services</loc>
   </url>
 
   <url>
-    <loc>https://caials.in/contact</loc>
+    <loc>https://www.caials.in/contact</loc>
   </url>
+
   <url>
-    <loc>https://caials.in/contact</loc>
+    <loc>https://www.caials.in/countries</loc>
   </url>
+
   <url>
-    <loc>https://caials.in/countries</loc>
-  </url>
-  <url>
-    <loc>https://caials.in/consultation</loc>
-  </url>
-  <url>
-    <loc>https://caials.in/login</loc>
+    <loc>https://www.caials.in/consultation</loc>
   </url>
 
 </urlset>
