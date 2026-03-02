@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -6,6 +7,7 @@ export default function AdminLogin() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const navigate = useNavigate();
 const handleSubmit = async (e) => {
   e.preventDefault();
   setTimeout(() => setIsLoading(true), 100);
@@ -27,7 +29,7 @@ const handleSubmit = async (e) => {
       setIsSuccess(true);
 
       setTimeout(() => {
-        window.location.href = "/";
+        navigate("/admin", { replace: true });
       }, 1500);
     } else {
       setError(data.message || "Invalid credentials. Please try again.");
