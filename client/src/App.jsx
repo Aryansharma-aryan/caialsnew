@@ -13,6 +13,12 @@ import Services from "./components/Pages/Services"
 import Countries from "./components/Pages/Countries";
 import Footer from "./components/Layout/Footer";
 import Loader from "./components/Layout/Loader";
+import ConsultationForm from "./components/Forms/ConsultancyForm";
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminPanel from "./Admin/AdminPanel";
+import AdminLogin from "./components/adminLogin";
+
+
 
 
 
@@ -34,6 +40,16 @@ function App() {
            <Route path="/contact" element={<Contact />} />
            <Route path="/services" element={<Services />} />
            <Route path="/countries" element={<Countries />} />
+           <Route path="/consultation" element={<ConsultationForm />} />
+           <Route path="/login" element={<AdminLogin />} />
+           <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          }
+        />
 
           </Routes>
         </main>
