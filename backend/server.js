@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   "https://caialsnew.vercel.app",
-  "https://www.caials.in"
+  "https://www.caials.in",
+  "https://caials.in",
+  "http://localhost:5173"
 ];
 
 if (process.env.NODE_ENV !== 'production') {
