@@ -12,8 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
-  "https://caialsnew.vercel.app/",
-  "https://www.caials.in/"
+  "https://caialsnew.vercel.app",
+  "https://www.caials.in"
 ];
 
 if (process.env.NODE_ENV !== 'production') {
