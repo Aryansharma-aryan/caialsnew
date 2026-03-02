@@ -8,7 +8,7 @@ const navLinks = [
   { name: "Services", path: "/services" },
   { name: "Countries", path: "/countries" },
   { name: "Contact", path: "/contact" },
-  {name:"Free Consultation", path:"/consultation"}
+  {name:"Consultation Form", path:"/consultation"}
 ];
 
 export default function Navbar() {
@@ -70,7 +70,12 @@ export default function Navbar() {
     }, 200);
 
     return () => clearInterval(interval);
-  }, [location.pathname, navigate, adminLoginPath, adminPanelPath]);
+  }, [
+    location.pathname,
+    navigate,
+    adminLoginPath,
+    adminPanelPath,
+  ]);
 
   const handleAdminLogout = () => {
     localStorage.removeItem("adminToken");

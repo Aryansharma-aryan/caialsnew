@@ -168,8 +168,7 @@ export default function Hero() {
             <div style={anim(150)}>
               <h1 style={{ fontFamily: "'Playfair Display', serif", lineHeight: 1.04 }}>
                 <span className="block text-white text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black">
-                  Turning Your
-                </span>
+                  Immigration & Visa Consultant                </span>
                 <span
                   className="block text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black mt-1"
                   style={{
@@ -179,10 +178,11 @@ export default function Hero() {
                     backgroundClip: "text",
                   }}
                 >
-                  American Dream
+                   in Fremont, CA
+
                 </span>
                 <span className="block text-white/80 text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black mt-1">
-                  Into Reality.
+                  
                 </span>
               </h1>
             </div>

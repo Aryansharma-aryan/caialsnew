@@ -12,9 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
-  'https://www.caials.com',
-  'https://caials.com',
-  'https://caials-ebon.onrender.com'
+  "https://caialsnew.vercel.app/"
 ];
 
 if (process.env.NODE_ENV !== 'production') {
