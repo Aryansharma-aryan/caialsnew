@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-<<<<<<< HEAD
 import { Link, useLocation, useNavigate } from "react-router-dom";
-=======
-import { Link, useLocation } from "react-router-dom";
->>>>>>> 81e37795e49343b52ed681ffbbe6eaacf948a9c8
 import logo from "../../assets/logo.jpg"; // <-- import the image
 
 const navLinks = [
@@ -12,16 +8,12 @@ const navLinks = [
   { name: "Services", path: "/services" },
   { name: "Countries", path: "/countries" },
   { name: "Contact", path: "/contact" },
-<<<<<<< HEAD
   {name:"Free Consultation", path:"/consultation"}
-=======
->>>>>>> 81e37795e49343b52ed681ffbbe6eaacf948a9c8
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-<<<<<<< HEAD
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
     Boolean(localStorage.getItem("adminToken"))
   );
@@ -29,9 +21,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const adminLoginPath = "/login";
   const adminPanelPath = "/admin";
-=======
-  const location = useLocation();
->>>>>>> 81e37795e49343b52ed681ffbbe6eaacf948a9c8
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -49,7 +38,6 @@ export default function Navbar() {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
-<<<<<<< HEAD
 
   useEffect(() => {
     setIsAdminLoggedIn(Boolean(localStorage.getItem("adminToken")));
@@ -66,8 +54,6 @@ export default function Navbar() {
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
-=======
->>>>>>> 81e37795e49343b52ed681ffbbe6eaacf948a9c8
 
   // If login succeeds and token is set, move admin directly to panel.
   useEffect(() => {
@@ -143,7 +129,6 @@ export default function Navbar() {
               })}
             </nav>
 
-<<<<<<< HEAD
             {/* CTA Buttons (desktop) */}
             <div className="hidden lg:flex items-center gap-2">
               {isAdminLoggedIn ? (
@@ -173,10 +158,6 @@ export default function Navbar() {
                   Admin Login
                 </Link>
               )}
-=======
-            {/* CTA Button (desktop) */}
-            <div className="hidden lg:block">
->>>>>>> 81e37795e49343b52ed681ffbbe6eaacf948a9c8
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md hover:shadow-red-300 transition-all duration-200"
@@ -275,7 +256,6 @@ export default function Navbar() {
 
         {/* Sidebar CTA */}
         <div className="p-5 border-t border-gray-100">
-<<<<<<< HEAD
           {isAdminLoggedIn ? (
             <div className="flex gap-2 mb-3">
               <Link
@@ -305,8 +285,6 @@ export default function Navbar() {
               Admin Login
             </Link>
           )}
-=======
->>>>>>> 81e37795e49343b52ed681ffbbe6eaacf948a9c8
           <Link
             to="/contact"
             className="flex items-center justify-center gap-2 w-full bg-red-600 hover:bg-red-700 text-white text-sm font-bold uppercase tracking-wider py-3 rounded-full shadow-lg transition-all duration-200"
