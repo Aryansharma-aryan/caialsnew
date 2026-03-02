@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://caialsnew-1.onrender.com/api";
 
 const AdminPanel = () => {
   const [queries, setQueries] = useState([]);
