@@ -98,48 +98,61 @@ const validateConsultation = [
     .withMessage("Message too long (max 500 chars)."),
 ];
 
-/* -------------------------------------------------------
-   🚀 CREATE CONSULTATION (with Resend email)
----------------------------------------------------------- */
 const createConsultation = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
   try {
+    // ✅ Save consultation to DB
     const newConsultation = await Consultation.create(req.body);
+    console.log("💾 New consultation saved:", newConsultation);
 
-    // ✅ Respond to frontend instantly
+    // -----------------------------
+    // ✅ Prepare email parameters
+    // -----------------------------
+    const emailData = {
+      from: "CAIALS <onboarding@caials.in>", // Verified sender
+      to: [
+    "rosy@caials.in",
+    "rosy@caials.com",
+    "info@caials.in"
+  ],                  // Hardcoded recipient for testing
+      subject: `📩 New Consultation from ${newConsultation.fullName}`,
+      html: buildConsultationHtml(newConsultation),
+      reply_to: newConsultation.email || "no-reply@caials.in",
+    };
+
+    console.log("📧 Email data prepared:", emailData);
+
+    // -----------------------------
+    // ✅ Send email
+    // -----------------------------
+    try {
+      const emailResponse = await resend.emails.send(emailData);
+      console.log("✅ Email sent successfully! Response from Resend:", emailResponse);
+    } catch (emailErr) {
+      console.error("❌ Resend email error:", emailErr);
+      console.error("💡 Check if 'from' is verified and 'to' is valid.");
+    }
+
+    // -----------------------------
+    // ✅ Respond to frontend
+    // -----------------------------
     res.status(201).json({
       success: true,
       message:
         "Your consultation has been submitted successfully. We’ll get back to you soon!",
     });
 
-    // ✅ Send email asynchronously using Resend default email
-    (async () => {
-      try {
-        await resend.emails.send({
-          from: "CAIALS <onboarding@resend.dev>",  // default verified email
-          to: process.env.ADMIN_RECIPIENT,
-          subject: `📩 New Consultation from ${newConsultation.fullName}`,
-          html: buildConsultationHtml(newConsultation),
-          reply_to: newConsultation.email,
-        });
-        console.log(`✅ Email sent via Resend for ${newConsultation.fullName}`);
-      } catch (emailErr) {
-        console.error("❌ Resend email error:", emailErr.message);
-      }
-    })();
   } catch (err) {
-    console.error("❌ Backend error:", err.message);
+    console.error("❌ Backend error:", err);
     res.status(500).json({
       success: false,
       message: "Something went wrong. Please try again later.",
     });
   }
 };
-
 /* -------------------------------------------------------
    📚 OTHER CONTROLLERS
 ---------------------------------------------------------- */
