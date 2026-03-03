@@ -97,60 +97,42 @@ const validateConsultation = [
     .isLength({ max: 500 })
     .withMessage("Message too long (max 500 chars)."),
 ];
-
 const createConsultation = async (req, res) => {
+  console.log("📨 Incoming request body:", req.body);
+
   const errors = validationResult(req);
-  if (!errors.isEmpty())
+  if (!errors.isEmpty()) {
+    console.log("❌ Validation errors:", errors.array());
     return res.status(400).json({ errors: errors.array() });
+  }
 
   try {
-    // ✅ Save consultation to DB
     const newConsultation = await Consultation.create(req.body);
-    console.log("💾 New consultation saved:", newConsultation);
+    console.log("✅ Consultation saved:", newConsultation);
 
-    // -----------------------------
-    // ✅ Prepare email parameters
-    // -----------------------------
-    const emailData = {
-      from: "CAIALS <onboarding@caials.in>", // Verified sender
-      to: [
-    "rosy@caials.in",
-    "rosy@caials.com",
-    "info@caials.in"
-  ],                  // Hardcoded recipient for testing
-      subject: `📩 New Consultation from ${newConsultation.fullName}`,
-      html: buildConsultationHtml(newConsultation),
-      reply_to: newConsultation.email || "no-reply@caials.in",
-    };
-
-    console.log("📧 Email data prepared:", emailData);
-
-    // -----------------------------
-    // ✅ Send email
-    // -----------------------------
     try {
-      const emailResponse = await resend.emails.send(emailData);
-      console.log("✅ Email sent successfully! Response from Resend:", emailResponse);
+      const emailResponse = await resend.emails.send({
+        from: "CAIALS <onboarding@caials.in>",  // must be verified
+        to: [process.env.ADMIN_RECIPIENT],       // can be multiple emails
+        subject: `📩 New Consultation from ${newConsultation.fullName}`,
+        html: buildConsultationHtml(newConsultation),
+        reply_to: newConsultation.email,
+      });
+
+      console.log("✅ Email sent response:", emailResponse);
+
     } catch (emailErr) {
-      console.error("❌ Resend email error:", emailErr);
-      console.error("💡 Check if 'from' is verified and 'to' is valid.");
+      console.error("❌ Email send error:", emailErr); // <-- full error object
     }
 
-    // -----------------------------
-    // ✅ Respond to frontend
-    // -----------------------------
     res.status(201).json({
       success: true,
-      message:
-        "Your consultation has been submitted successfully. We’ll get back to you soon!",
+      message: "Your consultation has been submitted successfully.",
     });
 
   } catch (err) {
     console.error("❌ Backend error:", err);
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong. Please try again later.",
-    });
+    res.status(500).json({ success: false, message: "Something went wrong." });
   }
 };
 /* -------------------------------------------------------
