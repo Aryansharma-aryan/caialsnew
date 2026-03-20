@@ -284,31 +284,7 @@ const SERVICES = [
       note: "We work directly with the religious organization to compile all required documentation per USCIS requirements.",
     },
   },
-  {
-    id: 9,
-    icon: Icons.Divorce,
-    title: "Divorce Services",
-    tagline: "Navigating life's transitions with dignity",
-    color: "from-slate-600 to-gray-700",
-    accent: "#475569",
-    badge: "Legal Support",
-    short: "Immigration-related divorce assistance — including how divorce affects Green Cards, pending petitions & visa status.",
-    details: {
-      overview: "Divorce can have serious implications on your immigration status. Our experienced team advises clients on how marital dissolution affects pending visa petitions, conditional Green Cards, and other immigration benefits.",
-      includes: [
-        "Impact assessment of divorce on immigration status",
-        "I-751 waiver for conditional Green Card holders (abuse/hardship)",
-        "Self-petition under VAWA (Violence Against Women Act)",
-        "Updating USCIS of marital status change",
-        "Guidance on re-filing after divorce",
-        "Children's immigration status after divorce",
-        "Coordination with family law attorneys",
-      ],
-      countries: ["USA"],
-      time: "Varies by case complexity",
-      note: "We work in coordination with licensed family law attorneys to protect your immigration rights during divorce proceedings.",
-    },
-  },
+ 
   {
     id: 10,
     icon: Icons.UK,

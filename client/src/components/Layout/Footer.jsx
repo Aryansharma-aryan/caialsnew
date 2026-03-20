@@ -435,11 +435,6 @@ export default function Footer() {
               Back to Top
             </button>
 
-            {/* right — disclaimer */}
-            <p className="text-white/15 text-[10px] text-center md:text-right max-w-xs">
-              Immigration services provided by qualified consultants. Not a law firm.
-              For legal advice, consult a licensed immigration attorney.
-            </p>
           </div>
         </div>
       </div>
