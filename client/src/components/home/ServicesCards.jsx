@@ -123,7 +123,6 @@ const SERVICES = [
       includes: [
         "I-130 Petition for Alien Relatives",
         "I-140 Immigrant Petition for Alien Workers",
-        "Employment-based EB-1, EB-2, EB-3 petitions",
         "I-485 Adjustment of Status filing",
         "Work Authorization (EAD) & Advance Parole",
         "Priority Date tracking & NVC coordination",
