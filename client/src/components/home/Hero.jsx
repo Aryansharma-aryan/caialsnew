@@ -166,25 +166,27 @@ export default function Hero() {
 
             {/* HEADLINE */}
             <div style={anim(150)}>
-              <h1 style={{ fontFamily: "'Playfair Display', serif", lineHeight: 1.04 }}>
-                <span className="block text-white text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black">
-                  Immigration & Visa Consultant                </span>
-                <span
-                  className="block text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black mt-1"
-                  style={{
-                    background: "linear-gradient(110deg, #ef4444 0%, #dc2626 45%, #ff7043 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                   in Fremont, CA
+            <h1 style={{ fontFamily: "'Playfair Display', serif", lineHeight: 1.04 }}>
+  <span className="block text-white text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black">
+    Best Immigration Consultant
+  </span>
 
-                </span>
-                <span className="block text-white/80 text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black mt-1">
-                  
-                </span>
-              </h1>
+  <span
+    className="block text-5xl sm:text-6xl lg:text-7xl xl:text-[82px] font-black mt-1"
+    style={{
+      background: "linear-gradient(110deg, #ef4444 0%, #dc2626 45%, #ff7043 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+    }}
+  >
+    in Fremont, CA
+  </span>
+
+  <span className="block text-white/80 text-2xl sm:text-3xl lg:text-4xl font-bold mt-4">
+    Green Card • Citizenship • Student & Business Visa Services
+  </span>
+</h1>
             </div>
 
             {/* Rule */}
@@ -195,12 +197,15 @@ export default function Hero() {
             </div>
 
             {/* Subtext */}
-            <p className="text-lg sm:text-xl text-white/45 leading-relaxed max-w-2xl" style={{ ...anim(350), fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>
-              Led by <span className="text-white/80 font-semibold">Founder Kanwal Kaur</span> with{" "}
-              <span className="text-red-400 font-semibold">13+ years of expert immigration guidance</span> — helping
-              families, professionals &amp; students reach the USA, Canada, UK, Australia, Schengen countries, and beyond.
-            </p>
-
+           <p className="text-lg sm:text-xl text-white/45 leading-relaxed max-w-2xl"
+  style={{ ...anim(350), fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>
+  
+  CAIALS is a <span className="text-white/80 font-semibold">trusted immigration consultant in Fremont, CA</span> led by 
+  <span className="text-white/80 font-semibold"> Founder Kanwal Kaur</span> with 
+  <span className="text-red-400 font-semibold"> 13+ years of experience</span>. 
+  We specialize in <strong>Green Card, Citizenship, Family Immigration, Student Visa, and Business Visa services</strong> 
+  for clients across the USA, Canada, UK, and more.
+</p>
             {/* Cycling service */}
             <div className="flex items-center gap-3 mt-6" style={anim(440)}>
               <span className="text-white/25 text-[10px] uppercase tracking-[0.2em] shrink-0" style={{ fontFamily: "'Montserrat', sans-serif" }}>
