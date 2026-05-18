@@ -4,8 +4,9 @@ import moment from "moment";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE_URL } from "../config/api";
 
-const API_URL = "https://caialsnew-1.onrender.com/api";
+const MotionDiv = motion.div;
 
 const AdminPanel = () => {
   const [queries, setQueries] = useState([]);
@@ -24,7 +25,7 @@ const AdminPanel = () => {
       }
 
       const res = await axios.get(
-        `${API_URL}/getConsultation/paginated/list?page=${currentPage}`,
+        `${API_BASE_URL}/getConsultation/paginated/list?page=${currentPage}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -38,7 +39,11 @@ const AdminPanel = () => {
   };
 
   useEffect(() => {
-    fetchQueries();
+    const timeoutId = window.setTimeout(() => {
+      fetchQueries();
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   // Toggle completion status
@@ -46,7 +51,7 @@ const AdminPanel = () => {
     try {
       const token = localStorage.getItem("adminToken");
       await axios.put(
-        `${API_URL}/getConsultation/${id}/complete`,
+        `${API_BASE_URL}/getConsultation/${id}/complete`,
         { isCompleted: !current },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -63,7 +68,7 @@ const AdminPanel = () => {
     if (!window.confirm("Are you sure you want to delete this consultation?")) return;
     try {
       const token = localStorage.getItem("adminToken");
-      await axios.delete(`${API_URL}/getConsultation/${id}`, {
+      await axios.delete(`${API_BASE_URL}/getConsultation/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Consultation deleted successfully!");
@@ -79,7 +84,7 @@ const AdminPanel = () => {
     if (!window.confirm("⚠️ Are you sure? This will delete ALL consultations permanently!")) return;
     try {
       const token = localStorage.getItem("adminToken");
-      await axios.delete(`${API_URL}/getConsultation`, {
+      await axios.delete(`${API_BASE_URL}/getConsultation`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("All consultations cleared!");
@@ -94,7 +99,7 @@ const AdminPanel = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100 px-4 py-10">
-      <motion.div
+      <MotionDiv
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -233,7 +238,7 @@ const AdminPanel = () => {
             </button>
           </div>
         )}
-      </motion.div>
+      </MotionDiv>
     </div>
   );
 };

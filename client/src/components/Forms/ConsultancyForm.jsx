@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from '../../config/api';
 
 const ConsultancyForm = () => {
   const [formData, setFormData] = useState({
@@ -67,7 +68,7 @@ const ConsultancyForm = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        'https://caialsnew-1.onrender.com/api/consult',
+        `${API_BASE_URL}/consult`,
         formData,
         {
           headers: { 'Content-Type': 'application/json' },

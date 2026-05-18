@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { API_BASE_URL } from "../config/api";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
@@ -502,7 +503,7 @@ export default function AdminLogin() {
     setError("");
 
     try {
-      const response = await fetch("https://caialsnew-1.onrender.com/api/admin/login", {
+      const response = await fetch(`${API_BASE_URL}/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -517,7 +518,7 @@ export default function AdminLogin() {
       } else {
         setError(data.message || "Invalid credentials. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setError("Connection failed. Please check your network.");
     }
 
