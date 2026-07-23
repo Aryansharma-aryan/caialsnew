@@ -14,5 +14,8 @@ npm-debug.log*
 dist/
 build/
 
+# uploaded consultation documents
+backend/uploads/
+
 # OS files
 .DS_Store

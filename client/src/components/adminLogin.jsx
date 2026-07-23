@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { API_BASE_URL } from "../config/api";
+import SEO from "./SEO/SEO";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
@@ -527,6 +528,11 @@ export default function AdminLogin() {
 
   return (
     <>
+      <SEO
+        title="Admin Login | CAIALS"
+        description="CAIALS administrative login."
+        robots="noindex, nofollow"
+      />
       <style>{styles}</style>
       <div className="login-root">
 

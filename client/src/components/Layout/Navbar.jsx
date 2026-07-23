@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg"; // <-- import the image
+import { serviceLinks } from "../../data/seoContent";
 
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
   { name: "Countries", path: "/countries" },
+  { name: "Process", path: "/process" },
+  { name: "FAQ", path: "/faq" },
   { name: "Contact", path: "/contact" },
-  {name:"Consultation Form", path:"/consultation"}
+  { name: "Consultation", path: "/consultation" }
 ];
 
 export default function Navbar() {
@@ -28,20 +31,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close sidebar on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
-
   // Prevent body scroll when sidebar open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
-
-  useEffect(() => {
-    setIsAdminLoggedIn(Boolean(localStorage.getItem("adminToken")));
-  }, [location.pathname]);
 
   // Keep auth state in sync across tabs.
   useEffect(() => {
@@ -89,12 +83,12 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white shadow-lg shadow-blue-900/10"
-            : "bg-white/95 backdrop-blur-md"
+            ? "bg-white/90 shadow-lg shadow-slate-900/10 backdrop-blur-xl"
+            : "bg-white/80 backdrop-blur-xl"
         }`}
       >
         {/* Top accent bar */}
-        <div className="h-1 w-full bg-gradient-to-r from-red-600 via-blue-800 to-red-600" />
+        <div className="h-1 w-full bg-gradient-to-r from-red-600 via-slate-900 to-red-600" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -103,23 +97,23 @@ export default function Navbar() {
             <Link to="/" className="flex items-center shrink-0">
               <img
                 src={logo}
-                alt="California Immigration Service"
+                alt="CAIALS Immigration Services in Fremont CA"
                 className="h-10 md:h-14 w-auto object-contain"
               />
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden xl:flex items-center gap-1">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 return (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`relative px-4 py-2 text-sm font-semibold tracking-wide uppercase transition-colors duration-200 group ${
+                    className={`relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide transition-colors duration-200 group ${
                       isActive
-                        ? "text-red-600"
-                        : "text-blue-900 hover:text-red-600"
+                        ? "bg-red-50 text-red-700"
+                        : "text-slate-700 hover:bg-slate-100 hover:text-red-700"
                     }`}
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
@@ -135,12 +129,12 @@ export default function Navbar() {
             </nav>
 
             {/* CTA Buttons (desktop) */}
-            <div className="hidden lg:flex items-center gap-2">
+            <div className="hidden xl:flex items-center gap-2">
               {isAdminLoggedIn ? (
                 <>
                   <Link
                     to={adminPanelPath}
-                    className="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md transition-all duration-200"
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-slate-800"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     Admin Panel
@@ -148,7 +142,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     onClick={handleAdminLogout}
-                    className="inline-flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-blue-900 text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-sm transition-all duration-200"
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-5 py-2.5 text-sm font-bold text-slate-900 shadow-sm transition-all duration-200 hover:bg-slate-200"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     Logout
@@ -157,15 +151,15 @@ export default function Navbar() {
               ) : (
                 <Link
                   to={adminLoginPath}
-                  className="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md transition-all duration-200"
+                  className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-slate-800"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   Admin Login
                 </Link>
               )}
               <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md hover:shadow-red-300 transition-all duration-200"
+                to="/consultation"
+                className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-red-200 transition-all duration-200 hover:bg-red-700"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -179,7 +173,8 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
-              className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-blue-50 transition-colors"
+              aria-expanded={isOpen}
+              className="xl:hidden flex flex-col justify-center items-center w-11 h-11 rounded-xl border border-slate-200 bg-white shadow-sm hover:border-red-200 hover:bg-red-50 transition-colors"
             >
               <span
                 className={`block w-6 h-0.5 bg-blue-900 transition-all duration-300 ${
@@ -204,23 +199,23 @@ export default function Navbar() {
       {/* Mobile Overlay */}
       <div
         onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 bg-slate-950/45 backdrop-blur-sm xl:hidden transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       />
 
       {/* Mobile Sidebar */}
       <aside
-        className={`fixed top-0 right-0 z-50 h-full w-72 bg-white shadow-2xl lg:hidden flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 z-50 h-full w-[21rem] max-w-[88vw] bg-white shadow-2xl xl:hidden flex flex-col transition-transform duration-300 ease-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Sidebar Header */}
-        <div className="h-1 w-full bg-gradient-to-r from-red-600 via-blue-800 to-red-600" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-red-600 via-slate-900 to-red-600" />
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
           <img
             src={logo}
-            alt="CIS"
+            alt="CAIALS Immigration Services logo"
             className="h-10 w-auto object-contain"
           />
           <button
@@ -242,7 +237,8 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-1 font-semibold text-sm uppercase tracking-wide transition-all duration-200 ${
+                onClick={() => setIsOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-1 font-semibold text-sm transition-all duration-200 ${
                   isActive
                     ? "bg-red-600 text-white shadow-md shadow-red-200"
                     : "text-blue-900 hover:bg-blue-50 hover:text-red-600"
@@ -260,7 +256,15 @@ export default function Navbar() {
         </nav>
 
         {/* Sidebar CTA */}
-        <div className="p-5 border-t border-gray-100">
+        <div className="border-t border-gray-100 p-5">
+          <div className="mb-4 max-h-36 overflow-y-auto rounded-2xl bg-slate-50 p-3">
+            <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-400">All services</p>
+            {serviceLinks.map((link) => (
+              <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)} className="mb-1 block rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-white hover:text-red-700">
+                {link.label}
+              </Link>
+            ))}
+          </div>
           {isAdminLoggedIn ? (
             <div className="flex gap-2 mb-3">
               <Link
@@ -291,7 +295,8 @@ export default function Navbar() {
             </Link>
           )}
           <Link
-            to="/contact"
+            to="/consultation"
+            onClick={() => setIsOpen(false)}
             className="flex items-center justify-center gap-2 w-full bg-red-600 hover:bg-red-700 text-white text-sm font-bold uppercase tracking-wider py-3 rounded-full shadow-lg transition-all duration-200"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
@@ -301,7 +306,7 @@ export default function Navbar() {
             Free Consultation
           </Link>
           <p className="text-center text-xs text-gray-400 mt-3" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            © 2024 California Immigration Service
+            © 2026 CAIALS Immigration Services
           </p>
         </div>
       </aside>

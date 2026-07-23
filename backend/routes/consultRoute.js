@@ -11,7 +11,9 @@ const {
   deleteConsultationById,
   clearAllConsultations,
   getConsultationsPaginated,
-  validateConsultation
+  downloadConsultationDocument,
+  validateConsultation,
+  updateConsultationCase
 } = require('../controller/ConsultationController');
 
 const { loginAdmin, verifyAdmin } = require('../controller/AdminController');
@@ -27,6 +29,7 @@ router.get('/getConsultation', verifyAdmin, getAllConsultations);
 
 // ✅ Mark consultation as completed
 router.put('/getConsultation/:id/complete', verifyAdmin, markConsultationCompleted);
+router.put('/getConsultation/:id/case', verifyAdmin, updateConsultationCase);
 
 // 🔢 Pending count
 router.get('/getConsultation/pendingCount', verifyAdmin, pendingBadge);
@@ -37,6 +40,8 @@ router.get('/getConsultation/cleanupOld', verifyAdmin, cleanupOldConsultations);
 // 🆕 New routes below
 // 🔹 Paginated list (20 per page)
 router.get('/getConsultation/paginated/list', verifyAdmin, getConsultationsPaginated);
+
+router.get('/getConsultation/:id/documents/:documentId/download', verifyAdmin, downloadConsultationDocument);
 
 // 🔹 Delete by ID
 router.delete('/getConsultation/:id', verifyAdmin, deleteConsultationById);

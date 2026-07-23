@@ -42,7 +42,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
+// Base64 uploads are larger than their source files; individual files are still
+// validated and capped in the consultation controller.
+app.use(express.json({ limit: '60mb' }));
+app.use(express.urlencoded({ extended: true, limit: '60mb' }));
 app.use('/api', consultRoute);
 
 app.get('/', (req, res) => res.send('Consultancy API Running...'));
